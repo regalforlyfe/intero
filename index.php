@@ -15,8 +15,8 @@
                 include_once "api/api_toprated.php";
                 foreach($toprated->results as $p){
                   echo 
-                  '<div class="card-group">
-                    <div class="card text-center" style="width: 250px;">
+                  '<div class="col-sm">
+                    <div class="card text-center" style="width: 250px; height:550px;">
                     <a href="movie.php?id=' . $p->id . '">
                     <img src="http://image.tmdb.org/t/p/w200'. $p->poster_path . '" class="card-img-top">
                       <div class="card-body">
