@@ -4,75 +4,53 @@
   $id_movie = $_GET['id'];
     include_once "api/api_movie_id.php";
     include_once "api/api_movie_video_id.php";
-    include_once "api/api_movie_similar.php";
     $title = "Detail Movie (".$movie_id->original_title.")";
     include_once "header.php";
   
 ?>
 
-    <?php 
-    if(isset($_GET['id'])){
-    $id_movie = $_GET['id']; 
-    ?>
-    <h1><?php echo $movie_id->original_title ?></h1>
-    <?php
-      echo "<h5>~ ".$movie_id->tagline." ~</h5>";
-    ?>
+<?php 
+  if(isset($_GET['id'])){
+      $id_movie = $_GET['id']; 
+?>
+    <h1 class="text-center"><?php echo $movie_id->original_title?></h1>
+    <h5 class="text-center"><?php echo $movie_id->tagline?> </h5>
+  </br>
 
-    <?php 
+  <hr>
 
-      foreach($movie_video_id->results as $video){
-                    echo '<iframe width="560" height="315" src="'."https://www.youtube.com/embed/".$video->key.'" frameborder="0" allowfullscreen></iframe>';
-      }
-     ?>"
-
-    <hr>
-          <img src="<?php echo $imgurl_2 ?><?php echo $movie_id->poster_path ?>">
-          <p>Title : <?php echo $movie_id->original_title ?></p>
-          <p>Tagline : <?php echo $movie_id->tagline ?></p>
-          <p>Genres : 
-              <?php
-                foreach($movie_id->genres as $g){
-                  echo '<span>' . $g->name . '</span> ';
-                }
-              ?>
-          </p>
-          <p>Overview : <?php echo $movie_id->overview ?></p>
-          <p>Release Date : <?php $rel = date('d F Y', strtotime($movie_id->release_date)); echo $rel ?>
-          <p>Production Companies :
-              <?php
-                foreach($movie_id->production_companies as $pc){
-                  echo $pc->name." ";
-                }
-              ?>
-          </p>
-          <p>Production Countries:
-              <?php
-                foreach($movie_id->production_countries as $pco){
-                  echo $pco->name. "&nbsp;&nbsp;" ;
-                }
-              ?>
-          </p>
-          <p>Budget: $ <?php echo $movie_id->budget ?> </p>
-          <p>Vote Average : <?php echo $movie_id->vote_average ?></p>
-          <p>Vote Count : <?php echo $movie_id->vote_count ?></p>
+    <div class="container">
+      <div class="row justify-content-md-center">
+    <?php foreach($movie_video_id->results as $video){
+        echo 
+        '<div class="card-group">
+          <div class="card">
+            <iframe width="500" height="300" src="'."https://www.youtube.com/embed/".$video->key.'" frameborder="0" allowfullscreen></iframe>
+          </div>
+         </div>';
+    }?>
+      </div>
+    </div>
 
     <hr>
-    <h3>Similar Movies</h3>
-      <ul>
-      <?php
-        $count = 4;
-        $output=""; 
-        foreach($movie_similar_id->results as $sim){
-          $output.='<li><a href="movie.php?id='.$sim->id.'"><img src="http://image.tmdb.org/t/p/w300'.$sim->backdrop_path.'"><h5>'.$sim->title.'</h5></a></li>';
-          if($count <=0){
-            break;
-            $count--;
-          }
-        }
-        echo $output;
-      ?>
-      </ul>
+    <div class="row justify-content-md-center">
+    <div class="card" style="width: 600px;">
+      <img src="<?php echo $imgurl_2 ?><?php echo $movie_id->poster_path ?>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">Title : <?php echo $movie_id->original_title ?></p>
+        <p class="card-text">Tagline : <?php echo $movie_id->tagline ?></p>
+        <p class="card-text">Genres :  <?php foreach($movie_id->genres as $g){echo '<span>' . $g->name . '</span> ';}?></p>
+        <p class="card-text">Overview : <?php echo $movie_id->overview ?></p>
+        <p class="card-text">Release Date : <?php $rel = date('d F Y', strtotime($movie_id->release_date)); echo $rel ?></p>
+        <p class="card-text">Production Companies : <?php foreach($movie_id->production_companies as $pc){echo $pc->name." ";}?></p>
+        <p class="card-text">Production Countries: <?php foreach($movie_id->production_countries as $pco){echo $pco->name. "&nbsp;&nbsp;" ;}?></p>
+        <p class="card-text">Budget: $ <?php echo $movie_id->budget ?></p>
+        <p class="card-text">Vote Average : <?php echo $movie_id->vote_average ?></p>
+        <p class="card-text">Vote Count : <?php echo $movie_id->vote_count ?></p>
+      </div>
+    </div>
+    </div>
+    <hr>
  
     <?php 
     } else{
