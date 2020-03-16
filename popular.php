@@ -18,8 +18,11 @@
             <a href="movie.php?id=' . $p->id . '">
             <img src="'.$imgurl_1.''. $p->poster_path . '">
             <div class="card-body">
-            <h5 class="card-title">' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")</h5>
-            <p><em> Rate : " . $p->vote_average . " | Vote : " . $p->vote_count . " | Popularity : " . round($p->popularity) . "</em></p>
+            <h5 class="card-title">' . $p->original_title . "
+             (" . substr($p->release_date, 0, 4) . ")</h5>
+            <p><em> Rate : " . $p->vote_average . " 
+            | Vote : " . $p->vote_count . " | Popularity : " . round($p->popularity) .
+             "</em></p>
             </div>
             </a>
             </div>

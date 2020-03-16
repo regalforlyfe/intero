@@ -31,15 +31,6 @@
               <a class="nav-link text-white" href="upcoming.php">Upcoming Movies</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" action="search.php" method="get">
-            <input class="form-control mr-sm-2" type="search" placeholder="Type Title Here" aria-label="Search" name="search" required>
-              <select name="channel" class="custom-select" required>
-                <option selected>Choose...</option>
-                <option value="movie" selected="selected">Movie</option>
-                <option value="tv">TV Show</option>
-              </select>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
         </div>
       </nav>
       <div style="container">
